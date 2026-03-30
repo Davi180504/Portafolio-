@@ -1,10 +1,14 @@
 "use client";
 
+import { projects } from "./data/project";
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-zinc-100 px-6">
 
-      {/* NEON BACKGROUND GLOWS */}
+      {/* BACKGROUND */}
       <div className="pointer-events-none absolute -top-48 -left-48 h-[600px] w-[600px] rounded-full bg-cyan-500/30 blur-[200px]" />
       <div className="pointer-events-none absolute top-1/4 -right-48 h-[600px] w-[600px] rounded-full bg-fuchsia-600/30 blur-[200px]" />
       <div className="pointer-events-none absolute bottom-0 left-1/3 h-[500px] w-[500px] rounded-full bg-purple-500/20 blur-[180px]" />
@@ -16,19 +20,22 @@ export default function Home() {
         </h1>
 
         <p className="mt-6 text-xl text-cyan-300 tracking-wide">
-          Systems Engineering Student · Web Developer
+          Full-Stack Developer · Next.js · PostgreSQL
         </p>
 
         <p className="mt-6 max-w-xl text-zinc-300">
-          I design and build futuristic, scalable web applications using modern
-          technologies and clean architecture.
+          Full-stack developer focused on building secure and scalable web applications 
+          with real-world architecture. Specialized in authentication systems, dashboards, 
+          and database-driven platforms.
         </p>
 
-        <div className="mt-12 flex gap-6">
+        {/* BOTONES CORREGIDOS */}
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
+
           <a
             href="https://github.com/Davi180504"
             target="_blank"
-            className="relative px-8 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-cyan-400 to-fuchsia-500 hover:scale-110 transition"
+            className="px-8 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-cyan-400 to-fuchsia-500 hover:scale-110 transition"
           >
             GitHub
           </a>
@@ -40,6 +47,14 @@ export default function Home() {
           >
             LinkedIn
           </a>
+
+          <Link
+            href="/certificates"
+            className="px-8 py-3 rounded-xl border border-cyan-400 text-cyan-300 hover:bg-cyan-400 hover:text-black transition"
+          >
+            Certifications
+          </Link>
+
         </div>
       </section>
 
@@ -49,106 +64,154 @@ export default function Home() {
           About Me
         </h2>
         <p className="text-zinc-300 leading-relaxed">
-          I am a Systems Engineering student from Colombia focused on building
-          high-impact web applications. My projects simulate real-world software
-          environments, combining performance, security, and futuristic UI
-          design.
+          Systems Engineering student focused on building production-ready applications 
+          and intelligent systems. I specialize in full-stack development, secure 
+          authentication architectures, and scalable backend solutions using modern technologies.
         </p>
+      </section>
+
+      {/* WHAT I BUILD */}
+      <section className="relative z-10 max-w-5xl mx-auto my-32">
+        <h2 className="text-3xl font-bold mb-10 text-purple-400">
+          What I Build
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            "Scalable Web Applications",
+            "Authentication Systems",
+            "Data-Driven Platforms",
+            "REST API Architectures"
+          ].map(item => (
+            <div
+              key={item}
+              className="rounded-xl px-6 py-4 text-center bg-zinc-900/70 border border-purple-500/20"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* TECH STACK */}
+      <section className="relative z-10 max-w-5xl mx-auto my-32">
+        <h2 className="text-3xl font-bold mb-10 text-purple-400">
+          Tech Stack
+        </h2>
+
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            "Next.js",
+            "TypeScript",
+            "PostgreSQL",
+            "Node.js",
+            "Tailwind CSS",
+            "REST APIs",
+            "JWT Authentication",
+            "Git & GitHub"
+          ].map(tech => (
+            <div
+              key={tech}
+              className="rounded-xl px-6 py-4 text-center bg-zinc-900/70 border border-purple-500/20"
+            >
+              {tech}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* PROJECTS */}
       <section className="relative z-10 max-w-6xl mx-auto mb-32">
         <h2 className="text-3xl font-bold mb-12 text-fuchsia-400">
-          Projects
+          Featured Projects
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10">
+          {projects.map((project) => (
+            <div
+              key={project.slug}
+              className="rounded-2xl bg-zinc-900/70 border border-white/10 overflow-hidden hover:scale-105 transition duration-300"
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={500}
+                height={300}
+                className="w-full h-52 object-cover"
+              />
 
-          {/* PROJECT 1 */}
-<div className="rounded-2xl bg-zinc-900/70 border border-cyan-500/20">
-  <img
-    src="\login.jpeg"
-    alt="Authentication System"
-    className="h-52 w-full object-cover"
-  />
-  <div className="p-6">
-    <h3 className="text-xl font-semibold text-cyan-400">
-      Authentication System
-    </h3>
-    <p className="text-sm text-zinc-400 mt-2">
-      Full authentication flow with protected routes and sessions.
-    </p>
-    <p className="text-xs text-zinc-500 mt-2">
-      Next.js · Auth · UI
-    </p>
-  </div>
-</div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-cyan-400">
+                  {project.title}
+                </h3>
 
-{/* PROJECT 2 */}
-<div className="rounded-2xl bg-zinc-900/70 border border-fuchsia-500/20">
-  <img
-    src="/Interfaz .jpeg"
-    alt="UI Platform"
-    className="h-52 w-full object-cover"
-  />
-  <div className="p-6">
-    <h3 className="text-xl font-semibold text-fuchsia-400">
-      Inclusive AI Platform
-    </h3>
-    <p className="text-sm text-zinc-400 mt-2">
-      Interactive dashboard for inclusive sign language learning.
-    </p>
-    <p className="text-xs text-zinc-500 mt-2">
-      Next.js · Dashboard · UI/UX
-    </p>
-  </div>
-</div>
+                <p className="text-sm text-zinc-400 mt-2">
+                  {project.description}
+                </p>
 
-{/* PROJECT 3 */}
-<div className="rounded-2xl bg-zinc-900/70 border border-purple-500/20">
-  <img
-    src="/Base de datos.jpeg"
-    alt="Database Design"
-    className="h-52 w-full object-cover"
-  />
-  <div className="p-6">
-    <h3 className="text-xl font-semibold text-purple-400">
-      User Management System
-    </h3>
-    <p className="text-sm text-zinc-400 mt-2">
-      PostgreSQL user management integrated with Next.js.
-    </p>
-    <p className="text-xs text-zinc-500 mt-2">
-      Next.js · PostgreSQL · SQL
-    </p>
-  </div>
-</div>
+                <p className="text-xs text-zinc-500 mt-2">
+                  {project.tech.join(" · ")}
+                </p>
 
+                <div className="flex gap-4 mt-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="text-xs text-cyan-400 hover:underline"
+                  >
+                    GitHub
+                  </a>
+
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    className="text-xs text-fuchsia-400 hover:underline"
+                  >
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* SKILLS */}
+      {/* EXPERIENCE */}
       <section className="relative z-10 max-w-4xl mx-auto mb-32">
         <h2 className="text-3xl font-bold mb-10 text-cyan-400">
-          Skills
+          Experience
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="rounded-2xl bg-zinc-900/70 border border-cyan-500/20 p-6">
+          <h3 className="text-xl font-semibold text-cyan-400">
+            Freelance Full-Stack Developer
+          </h3>
+          <p className="text-sm text-zinc-400 mt-2">
+            Developed scalable web applications using Next.js and PostgreSQL, 
+            implementing authentication systems, dashboards, and secure data handling 
+            in real-world project simulations.
+          </p>
+        </div>
+      </section>
+
+      {/* CURRENTLY LEARNING */}
+      <section className="relative z-10 max-w-4xl mx-auto mb-32">
+        <h2 className="text-3xl font-bold mb-10 text-purple-400">
+          Currently Learning
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
           {[
-            "Next.js",
-            "JavaScript / TypeScript",
-            "PostgreSQL",
-            "Authentication & Sessions",
-            "Tailwind CSS",
-            "Git / GitHub",
-            "Responsive UI",
-            "Dashboard Design",
-          ].map(skill => (
+            "Advanced Authentication Patterns",
+            "System Design",
+            "Clean Architecture",
+            "API Security Best Practices"
+          ].map(item => (
             <div
-              key={skill}
-              className="rounded-xl px-6 py-4 text-center bg-zinc-900/70 border border-zinc-700"
+              key={item}
+              className="rounded-xl px-6 py-4 text-center bg-zinc-900/70 border border-purple-500/20"
             >
-              {skill}
+              {item}
             </div>
           ))}
         </div>
