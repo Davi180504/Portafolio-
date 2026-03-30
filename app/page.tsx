@@ -162,13 +162,7 @@ export default function Home() {
                     GitHub
                   </a>
 
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    className="text-xs text-fuchsia-400 hover:underline"
-                  >
-                    Live Demo
-                  </a>
+                  
                 </div>
               </div>
             </div>
